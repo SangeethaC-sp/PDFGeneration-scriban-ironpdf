@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GeneratePDF
+﻿namespace GeneratePDF
 {
-    internal class GenearatePDFFile
+    public static class GeneratePDFFile
     {
+        public static void Generate(string html, string outputPath)
+        {
+            var renderer = new IronPdf.ChromePdfRenderer();
+            var pdf = renderer.RenderHtmlAsPdf(html);
+            pdf.SaveAs(outputPath);
+        }
     }
 }

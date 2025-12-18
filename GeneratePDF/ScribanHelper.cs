@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Scriban;
 
 namespace GeneratePDF
 {
-    public class ScribanHelper
+    public static class ScribanHelper
     {
+        public static string RenderTemplate(object model, string templatePath)
+        {
+            var templateText = File.ReadAllText(templatePath);
+            var template = Template.Parse(templateText);
+            return template.Render(model, member => member.Name);
+        }
     }
 }
